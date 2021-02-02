@@ -48,7 +48,7 @@ We're going to use the new endpoint `/api/v2/metrics/ingest​` to push locally 
 1. Run the following script with the edited command you made from our last step:
 
    ```bash
-   while true; do data=$(sudo journalctl _SYSTEMD_UNIT=ssh.service --since "1min ago" | grep "Failed" | awk '{print "host.ssh.fail.sessions,user="$9",ip="$11" "1}'); curl -d $data "https://TENANTID.live.dynatrace.com/api/v2/metrics/ingest" -H "Authorization: Api-Token XXXXXXXXXXXXX" -H "Content-Type: text/plain; charset=utf-8"; sleep 60; done
+   while true; do data=$(sudo journalctl _SYSTEMD_UNIT=ssh.service --since "1min ago" | grep "Failed" | awk '{print "host.ssh.fail.sessions,user="$9",ip="$11" "1}'); curl -d "$data" "https://TENANTID.live.dynatrace.com/api/v2/metrics/ingest" -H "Authorization: Api-Token XXXXXXXXXXXXX" -H "Content-Type: text/plain; charset=utf-8"; sleep 60; done
    ```
 
 ### Step 4. Query Data in Data Explorer
